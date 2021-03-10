@@ -6,7 +6,7 @@
     Percorrer a lista e adicionar na categoria a quantidade de produtos de cada categoria.
 MAP, FILTER */
 
-//2 - Criar uma lista vazia de "categoria de produtos" (com id, nome, status (se é ativo ou inativo)) e adicionar 5 categorias.
+//3 - Criar uma lista vazia de "categoria de produtos" (com id, nome, status (se é ativo ou inativo)) e adicionar 5 categorias.
 const categoria = [];
 
 categoria.push({ id: 1, nome: "Higiene", status: false });
@@ -73,13 +73,25 @@ produtos.forEach((item) => {
 console.log("-----------------");
 //Percorrer a lista e adicionar na categoria a quantidade de produtos de cada categoria.
 categoria.map((categ) => {
-  let count = 0;
-  produtos.forEach((item) => {
+  //let count = 0;
+  /*   produtos.forEach((item) => {
     if (item.idCat == categ.id) {
       count++;
-    }
-  });
-  categ.quantidade = count;
-  return categ;
+    } 
+  }); */
+  const produtosFiltrados = produtos.filter((prod) => prod.idCat == categ.id);
+  // console.log("produtosFiltrados");
+  // console.table(produtosFiltrados.length);
+  // categ.quantidade = count;
+
+  const result = {
+    idCategoria: categ.id,
+    nomeCategoria: categ.nome,
+    numProdutos: produtosFiltrados.length,
+  };
+
+  console.table(result);
+
+  return result;
 });
 console.log(categoria);
